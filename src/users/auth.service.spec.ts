@@ -70,5 +70,12 @@ describe('AuthService', () => {
       service.signin('laskdjf@alskdfj.com', 'passowrd'),
     ).rejects.toThrow(BadRequestException);
   });
+
+  it('returns a user if correct password is provided', async () => {
+    await service.signup('teste1@asdf.com', 'mypassword');
+
+    const user = await service.signin('teste1@asdf.com', 'mypassword');
+    expect(user).toBeDefined();
+  })
 });
 
