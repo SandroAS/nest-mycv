@@ -9,6 +9,7 @@ import { ReportsModule } from './reports/reports.module';
 import { User } from './users/user.entity';
 import { Report } from './reports/report.entity';
 const cookieSession = require('cookie-session');
+require('dotenv').config();
 
 @Module({
   imports: [
@@ -19,9 +20,10 @@ const cookieSession = require('cookie-session');
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
+        console.log('TESTEEEEEE',config, process.env.DB_NAME)
         return {
           type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
+          database: process.env.DB_NAME,
           synchronize: true,
           entities: [User, Report]
         }
