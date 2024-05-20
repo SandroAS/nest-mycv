@@ -1,5 +1,5 @@
 var dbConfig = {
-  synchronize: false
+  synchronize: false,
 };
 
 switch (process.env.NODE_ENV) {
@@ -8,14 +8,14 @@ switch (process.env.NODE_ENV) {
       type: 'sqlite',
       database: 'db.sqlite',
       entities: ['**/*.entity.js']
-    })
+    });
     break;
-  case 'teste':
+  case 'test':
     Object.assign(dbConfig, {
       type: 'sqlite',
       database: 'test.sqlite',
       entities: ['**/*.entity.ts']
-    })
+    });
     break;
   case 'production':
     break;
