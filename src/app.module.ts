@@ -14,7 +14,15 @@ const cookieSession = require('cookie-session');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useFactory: async () => {
+        const config = await import('../ormconfig');
+        return {
+          ...config,
+          retryAttempts: config.retryAttempts || 3, // Adicione a propriedade retryAttempts aqui
+        };
+      },
+    }),
     UsersModule,
     ReportsModule
   ],

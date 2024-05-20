@@ -1,5 +1,6 @@
 var dbConfig = {
   synchronize: false,
+  retryAttempts: 3
 };
 
 switch (process.env.NODE_ENV) {
