@@ -13,11 +13,19 @@ export class UsersService {
     return this.repo.save(user);
   }
 
+  // Usedes in new version of typeorm
+  // findOne(id: number) {
+  //   if(!id) {
+  //     return null;
+  //   }
+  //   return this.repo.findOneBy({ id });
+  // }
+
   findOne(id: number) {
-    if(!id) {
+    if (!id) {
       return null;
     }
-    return this.repo.findOneBy({ id });
+    return this.repo.findOne(id);
   }
 
   find(email: string) {
